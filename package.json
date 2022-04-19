@@ -1,0 +1,21 @@
+{
+  "name": "fint",
+  "version": "0.0.1",
+  "description": "Telegram Bot API framework",
+  "main": "dist/index.js",
+  "repository": "https://github.com/fintjs/FiNT.git",
+  "author": "FiNT",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^2.0.15",
+    "rimraf": "^3.0.2",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.3"
+  },
+  "scripts": {
+    "start": "node .",
+    "build": "tsc",
+    "prebuild": "rimraf dist",
+    "dev": "nodemon lib/index.ts"
+  }
+}
