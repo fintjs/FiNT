@@ -19,7 +19,7 @@ class Fint {
             const response = await this.api.get('/' + method);
             return {
                 ok: true,
-                response
+                data: response.data.result
             };
         }
         catch (error) {
@@ -30,14 +30,27 @@ class Fint {
         }
     }
 
+    private async getUpdates() {
+        const { ok, data: updates, error } = await this.call('getUpdates');
+        if (!ok) {
+            console.log(error);
+            throw new Error("Can't perform handleUpdates method");
+        }
+        return updates;
+    }
+
     public async getMe() {
         const result = await this.call('getMe');
-        if (result.ok) {
-            return result.response?.data.result
-        } else if (!result.ok) {
+        if (!result.ok) {
             console.log(result.error);
-            throw new Error("Ishlamadi");
+            throw new Error("Can't perform getMe method");
         }
+        return result.data;
+    }
+ 
+    public async start() {
+        const updates = await this.getUpdates();
+        console.log(updates);
     }
 }
 
