@@ -17,5 +17,8 @@
     "build": "tsc",
     "prebuild": "rimraf lib",
     "dev": "nodemon src/index.ts"
+  },
+  "dependencies": {
+    "axios": "^0.26.1"
   }
 }
