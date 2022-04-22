@@ -299,6 +299,8 @@ interface VideoChatScheduled {
   start_date: number;
 }
 
+interface VideoChatStarted { }
+
 interface VideoChatEnded {
   duration: number;
 }
@@ -420,7 +422,13 @@ interface ChatAdministratorRights {
   can_pin_messages: boolean;
 }
 
-type ChatMember = ChatMemberOwner | ChatMemberAdministrator | ChatMemberMember | ChatMemberRestricted | ChatMemberLeft | ChatMemberBanned;
+type ChatMember =
+  | ChatMemberOwner
+  | ChatMemberAdministrator
+  | ChatMemberMember
+  | ChatMemberRestricted
+  | ChatMemberLeft
+  | ChatMemberBanned;
 
 interface ChatMemberOwner {
   status: string;
@@ -622,7 +630,12 @@ interface InputMediaDocument {
   disable_content_type_detection?: boolean;
 }
 
-type InputFile = InputMediaPhoto | InputMediaVideo | InputMediaAnimation | InputMediaAudio | InputMediaDocument;
+type InputFile =
+  | InputMediaPhoto
+  | InputMediaVideo
+  | InputMediaAnimation
+  | InputMediaAudio
+  | InputMediaDocument;
 
 // Sticker
 
@@ -655,4 +668,588 @@ interface MaskPosition {
   x_shift: number;
   y_shift: number;
   scale: number;
+}
+
+// Inline mode
+
+interface InlineQuery {
+  id: string;
+  from: User;
+  query: string;
+  offset: string;
+  chat_type?: string;
+  location?: Location;
+}
+
+type InlineQueryResult =
+  | InlineQueryResultCachedAudio
+  | InlineQueryResultCachedDocument
+  | InlineQueryResultCachedGif
+  | InlineQueryResultCachedMpeg4Gif
+  | InlineQueryResultCachedPhoto
+  | InlineQueryResultCachedSticker
+  | InlineQueryResultCachedVideo
+  | InlineQueryResultCachedVoice
+  | InlineQueryResultArticle
+  | InlineQueryResultAudio
+  | InlineQueryResultContact
+  | InlineQueryResultGame
+  | InlineQueryResultDocument
+  | InlineQueryResultGif
+  | InlineQueryResultLocation
+  | InlineQueryResultMpeg4Gif
+  | InlineQueryResultPhoto
+  | InlineQueryResultVenue
+  | InlineQueryResultVideo
+  | InlineQueryResultVoice;
+
+interface InlineQueryResultArticle {
+  type: string;
+  id: string;
+  title: string;
+  input_message_content: InputMessageContent;
+  reply_markup?: InlineKeyboardMarkup;
+  url?: string;
+  hide_url?: boolean;
+  description?: string;
+  thumb_url?: string;
+  thumb_width?: number;
+  thumb_height?: number;
+}
+
+interface InlineQueryResultPhoto {
+  type: string;
+  id: string;
+  photo_url: string;
+  thumb_url: string;
+  photo_width?: number;
+  photo_height?: number;
+  title?: string;
+  description?: string;
+  caption?: string;
+  parse_mode?: string;
+  caption_entities?: MessageEntity[];
+  reply_markup?: InlineKeyboardMarkup;
+  input_message_content?: InputMessageContent;
+}
+
+interface InlineQueryResultGif {
+  type: string;
+  id: string;
+  gif_url: string;
+  gif_width?: number;
+  gif_height?: number;
+  gif_duration?: number;
+  thumb_url: string;
+  thumb_mime_type?: string;
+  title?: string;
+  caption?: string;
+  parse_mode?: string;
+  caption_entities?: MessageEntity[];
+  reply_markup?: InlineKeyboardMarkup;
+  input_message_content?: InputMessageContent;
+}
+
+interface InlineQueryResultMpeg4Gif {
+  type: string;
+  id: string;
+  mpeg4_url: string;
+  mpeg4_width?: number;
+  mpeg4_height?: number;
+  mpeg4_duration?: number;
+  thumb_url: string;
+  thumb_mime_type?: string;
+  title?: string;
+  caption?: string;
+  parse_mode?: string;
+  caption_entities?: MessageEntity[];
+  reply_markup?: InlineKeyboardMarkup;
+  input_message_content?: InputMessageContent;
+}
+
+interface InlineQueryResultVideo {
+  type: string;
+  id: string;
+  video_url: string;
+  mime_type: string;
+  thumb_url: string;
+  title: string;
+  caption?: string;
+  parse_mode?: string;
+  caption_entities?: MessageEntity[];
+  video_width?: number;
+  video_height?: number;
+  video_duration?: number;
+  description?: string;
+  reply_markup?: InlineKeyboardMarkup;
+  input_message_content?: InputMessageContent;
+}
+
+interface InlineQueryResultAudio {
+  type: string;
+  id: string;
+  audio_url: string;
+  title: string;
+  caption?: string;
+  parse_mode?: string;
+  caption_entities?: MessageEntity[];
+  performer?: string;
+  audio_duration?: number;
+  reply_markup?: InlineKeyboardMarkup;
+  input_message_content?: InputMessageContent;
+}
+
+interface InlineQueryResultVoice {
+  type: string;
+  id: string;
+  voice_url: string;
+  title: string;
+  caption?: string;
+  parse_mode?: string;
+  caption_entities?: MessageEntity[];
+  voice_duration?: number;
+  reply_markup?: InlineKeyboardMarkup;
+  input_message_content?: InputMessageContent;
+}
+
+interface InlineQueryResultDocument {
+  type: string;
+  id: string;
+  title: string;
+  caption?: string;
+  parse_mode?: string;
+  caption_entities?: MessageEntity[];
+  document_url: string;
+  mime_type: string;
+  description?: string;
+  reply_markup?: InlineKeyboardMarkup;
+  input_message_content?: InputMessageContent;
+  thumb_url?: string;
+  thumb_width?: number;
+  thumb_height?: number;
+}
+
+interface InlineQueryResultLocation {
+  type: string;
+  id: string;
+  latitude: number;
+  longitude: number;
+  title: string;
+  horizontal_accuracy?: number;
+  live_period?: number;
+  heading?: number;
+  proximity_alert_radius?: number;
+  reply_markup?: InlineKeyboardMarkup;
+  input_message_content?: InputMessageContent;
+  thumb_url?: string;
+  thumb_width?: number;
+  thumb_height?: number;
+}
+
+interface InlineQueryResultVenue {
+  type: string;
+  id: string;
+  latitude: number;
+  longitude: number;
+  title: string;
+  address: string;
+  foursquare_id?: string;
+  foursquare_type?: string;
+  google_place_id?: string;
+  google_place_type?: string;
+  reply_markup?: InlineKeyboardMarkup;
+  input_message_content?: InputMessageContent;
+  thumb_url?: string;
+  thumb_width?: number;
+  thumb_height?: number;
+}
+
+interface InlineQueryResultContact {
+  type: string;
+  id: string;
+  phone_number: string;
+  first_name: string;
+  last_name?: string;
+  vcard?: string;
+  reply_markup?: InlineKeyboardMarkup;
+  input_message_content?: InputMessageContent;
+  thumb_url?: string;
+  thumb_width?: number;
+  thumb_height?: number;
+}
+
+interface InlineQueryResultGame {
+  type: string;
+  id: string;
+  game_short_name: string;
+  reply_markup?: InlineKeyboardMarkup;
+}
+
+interface InlineQueryResultCachedPhoto {
+  type: string;
+  id: string;
+  photo_file_id: string;
+  title?: string;
+  description?: string;
+  caption?: string;
+  parse_mode?: string;
+  caption_entities?: MessageEntity[];
+  reply_markup?: InlineKeyboardMarkup;
+  input_message_content?: InputMessageContent;
+}
+
+interface InlineQueryResultCachedGif {
+  type: string;
+  id: string;
+  gif_file_id: string;
+  title?: string;
+  caption?: string;
+  parse_mode?: string;
+  caption_entities?: MessageEntity[];
+  reply_markup?: InlineKeyboardMarkup;
+  input_message_content?: InputMessageContent;
+}
+
+interface InlineQueryResultCachedMpeg4Gif {
+  type: string;
+  id: string;
+  mpeg4_file_id: string;
+  title?: string;
+  caption?: string;
+  parse_mode?: string;
+  caption_entities?: MessageEntity[];
+  reply_markup?: InlineKeyboardMarkup;
+  input_message_content?: InputMessageContent;
+}
+
+interface InlineQueryResultCachedSticker {
+  type: string;
+  id: string;
+  sticker_file_id: string;
+  reply_markup?: InlineKeyboardMarkup;
+  input_message_content?: InputMessageContent;
+}
+
+interface InlineQueryResultCachedDocument {
+  type: string;
+  id: string;
+  title: string;
+  document_file_id: string;
+  description?: string;
+  caption?: string;
+  parse_mode?: string;
+  caption_entities?: MessageEntity[];
+  reply_markup?: InlineKeyboardMarkup;
+  input_message_content?: InputMessageContent;
+}
+
+interface InlineQueryResultCachedVideo {
+  type: string;
+  id: string;
+  video_file_id: string;
+  title?: string;
+  caption?: string;
+  parse_mode?: string;
+  caption_entities?: MessageEntity[];
+  reply_markup?: InlineKeyboardMarkup;
+  input_message_content?: InputMessageContent;
+}
+
+interface InlineQueryResultCachedVoice {
+  type: string;
+  id: string;
+  voice_file_id: string;
+  title?: string;
+  caption?: string;
+  parse_mode?: string;
+  caption_entities?: MessageEntity[];
+  reply_markup?: InlineKeyboardMarkup;
+  input_message_content?: InputMessageContent;
+}
+
+interface InlineQueryResultCachedAudio {
+  type: string;
+  id: string;
+  voice_file_id: string;
+  title?: string;
+  caption?: string;
+  parse_mode?: string;
+  caption_entities?: MessageEntity[];
+  reply_markup?: InlineKeyboardMarkup;
+  input_message_content?: InputMessageContent;
+}
+
+type InputMessageContent =
+  | InputTextMessageContent
+  | InputLocationMessageContent
+  | InputVenueMessageContent
+  | InputContactMessageContent
+  | InputInvoiceMessageContent;
+
+interface InputTextMessageContent {
+  message_text: string;
+  parse_mode?: string;
+  entities?: MessageEntity[];
+  disable_web_page_preview?: boolean;
+}
+
+interface InputLocationMessageContent {
+  latitude: number;
+  longitude: number;
+  horizontal_accuracy?: number;
+  live_period?: number;
+  heading?: number;
+  proximity_alert_radius?: number;
+}
+
+interface InputVenueMessageContent {
+  latitude: number;
+  longitude: number;
+  title: string;
+  address: string;
+  foursquare_id?: string;
+  foursquare_type?: string;
+  google_place_id?: string;
+  google_place_type?: string;
+}
+
+interface InputContactMessageContent {
+  phone_number: string;
+  first_name: string;
+  last_name?: string;
+  vcard?: string;
+}
+
+interface InputInvoiceMessageContent {
+  title: string;
+  description: string;
+  payload: string;
+  provider_token: string;
+  currency: string;
+  prices: LabeledPrice[];
+  max_tip_amount?: number;
+  suggested_tip_amounts?: number[];
+  provider_data?: string;
+  photo_url?: string;
+  photo_size?: number;
+  photo_width?: number;
+  photo_height?: number;
+  need_name?: boolean;
+  need_phone_number?: boolean;
+  need_email?: boolean;
+  need_shipping_address?: boolean;
+  send_phone_number_to_provider?: boolean;
+  send_email_to_provider?: boolean;
+  is_flexible?: boolean;
+}
+
+interface ChosenInlineResult {
+  result_id: string;
+  from: User;
+  location?: Location;
+  inline_message_id?: string;
+  query: string;
+}
+
+interface SentWebAppMessage {
+  inline_message_id?: string;
+}
+
+// Payments
+
+interface LabeledPrice {
+  label: string;
+  amount: number;
+}
+
+interface Invoice {
+  title: string;
+  description: string;
+  start_parameter: string;
+  currency: string;
+  total_amount: number;
+}
+
+interface ShippingAddress {
+  country_code: string;
+  state: string;
+  city: string;
+  street_line1: string;
+  street_line2: string;
+  post_code: string;
+}
+
+interface OrderInfo {
+  name?: string;
+  phone_number?: string;
+  email?: string;
+  shipping_address?: ShippingAddress;
+}
+
+interface ShippingOption {
+  id: string;
+  title: string;
+  prices: LabeledPrice[];
+}
+
+interface SuccessfulPayment {
+  currency: string;
+  total_amount: number;
+  invoice_payload: string;
+  shipping_option_id?: string;
+  order_info?: OrderInfo;
+  telegram_payment_charge_id: string;
+  provider_payment_charge_id: string;
+}
+
+interface ShippingQuery {
+  id: string;
+  from: User;
+  invoice_payload: string;
+  shipping_address: ShippingAddress;
+}
+
+interface PreCheckoutQuery {
+  id: string;
+  from: User;
+  currency: string;
+  total_amount: number;
+  invoice_payload: string;
+  shipping_option_id?: string;
+  order_info?: OrderInfo;
+}
+
+// Telegram Passport
+
+interface PassportData {
+  data: EncryptedPassportElement[];
+  credentials: EncryptedCredentials;
+}
+
+interface PassportFile {
+  file_id: string;
+  file_unique_id: string;
+  file_size: number;
+  file_date: number;
+}
+
+interface EncryptedPassportElement {
+  type: string;
+  data: string;
+  phone_number?: string;
+  email?: string;
+  files?: PassportFile[];
+  front_side?: PassportFile;
+  reverse_side?: PassportFile;
+  selfie?: PassportFile;
+  translation?: PassportFile[];
+  hash: string;
+}
+
+interface EncryptedCredentials {
+  data: string;
+  hash: string;
+  secret: string;
+}
+
+type PassportElementError =
+  | PassportElementErrorDataField
+  | PassportElementErrorFrontSide
+  | PassportElementErrorReverseSide
+  | PassportElementErrorSelfie
+  | PassportElementErrorFile
+  | PassportElementErrorFiles
+  | PassportElementErrorTranslationFile
+  | PassportElementErrorTranslationFiles
+  | PassportElementErrorUnspecified;
+
+interface PassportElementErrorDataField {
+  source: string;
+  type: string;
+  field_name: string;
+  data_hash: string;
+  message: string;
+}
+
+interface PassportElementErrorFrontSide {
+  source: string;
+  type: string;
+  field_name: string;
+  data_hash: string;
+  message: string;
+}
+
+interface PassportElementErrorReverseSide {
+  source: string;
+  type: string;
+  field_name: string;
+  data_hash: string;
+  message: string;
+}
+
+interface PassportElementErrorSelfie {
+  source: string;
+  type: string;
+  field_name: string;
+  data_hash: string;
+  message: string;
+}
+
+interface PassportElementErrorFile {
+  source: string;
+  type: string;
+  field_name: string;
+  data_hash: string;
+  message: string;
+}
+
+interface PassportElementErrorFiles {
+  source: string;
+  type: string;
+  field_name: string;
+  data_hash: string;
+  message: string;
+}
+
+interface PassportElementErrorTranslationFile {
+  source: string;
+  type: string;
+  field_name: string;
+  data_hash: string;
+  message: string;
+}
+
+interface PassportElementErrorTranslationFiles {
+  source: string;
+  type: string;
+  field_name: string;
+  data_hash: string;
+  message: string;
+}
+
+interface PassportElementErrorUnspecified {
+  source: string;
+  type: string;
+  field_name: string;
+  data_hash: string;
+  message: string;
+}
+
+// Games
+
+interface Game {
+  title: string;
+  description: string;
+  photo: PhotoSize[];
+  text?: string;
+  text_entities?: MessageEntity[];
+  animation?: Animation;
+}
+
+interface CallbackGame { }
+
+interface GameHighScore {
+  position: number;
+  user: User;
+  score: number;
 }
