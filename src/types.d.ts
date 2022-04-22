@@ -1,3 +1,55 @@
+// Getting updates
+
+interface Update {
+  update_id: number;
+  message: Message;
+  edited_message: Message;
+  channel_post: Message;
+  edited_channel_post: Message;
+  inline_query: InlineQuery;
+  chosen_inline_result: ChosenInlineResult;
+  callback_query: CallbackQuery;
+  shipping_query: ShippingQuery;
+  pre_checkout_query: PreCheckoutQuery;
+  poll: Poll;
+  poll_answer: PollAnswer;
+  my_chat_member: ChatMemberUpdated;
+  chat_member: ChatMemberUpdated;
+  chat_join_request: ChatJoinRequest;
+}
+
+interface getUpdates {
+  offset?: number;
+  limit?: number;
+  timeout?: number;
+  allowed_updates?: string[];
+}
+
+interface setWebhook {
+  url: string;
+  certificate?: InputFile;
+  ip_address?: string;
+  max_connections?: number;
+  allowed_updates?: string[];
+  drop_pending_updates?: boolean;
+}
+
+interface deleteWebhook {
+  drop_pending_updates?: boolean;
+}
+
+interface WebhookInfo {
+  url: string;
+  has_custom_certificate: boolean;
+  pending_update_count: number;
+  ip_address?: string;
+  last_error_date?: number;
+  last_error_message?: string;
+  last_synchronization_error_date?: number;
+  max_connections?: number;
+  allowed_updates?: string[];
+}
+
 // Available types
 
 interface User {
