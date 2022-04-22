@@ -623,3 +623,36 @@ interface InputMediaDocument {
 }
 
 type InputFile = InputMediaPhoto | InputMediaVideo | InputMediaAnimation | InputMediaAudio | InputMediaDocument;
+
+// Sticker
+
+interface Sticker {
+  file_id: string;
+  file_unique_id: string;
+  width: number;
+  height: number;
+  is_animated: boolean;
+  is_video: boolean;
+  thumb?: PhotoSize;
+  emoji?: string;
+  set_name?: string;
+  mask_position?: MaskPosition;
+  file_size?: number;
+}
+
+interface StickerSet {
+  name: string;
+  title: string;
+  is_animated: boolean;
+  is_video: boolean;
+  contains_masks: boolean;
+  stickers: Sticker[];
+  thumb?: PhotoSize;
+}
+
+interface MaskPosition {
+  point: string;
+  x_shift: number;
+  y_shift: number;
+  scale: number;
+}
